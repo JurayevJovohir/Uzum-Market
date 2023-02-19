@@ -1,4 +1,4 @@
-let products = [
+let product = [
     {
      "createdAt": "1996-04-27T21:05:52.564Z",
      "name": "name 1",

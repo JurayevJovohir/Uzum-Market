@@ -1,32 +1,18 @@
 const elList = findElement('#top-products');
 const elTemplate = findElement('#template-products');
-const elLanguage = findElement('#select-language');
 
-let lang = localStorage.getItem('lang');
+const elLoader = findElement(".lds-spinner");
 
+let products = []
 
-elLanguage.value = lang
-if (lang === 'uz') {
-        document.title = `Uzum Market - internet do'kon`;
-} else if (lang === 'ru') {
-        document.title = `Uzum Market - интернет магазин`;
-}
+const BASE_URL = 'https://fakestoreapi.com'
 
-elLanguage.addEventListener("change", () => {
-        const langValue = elLanguage.value;
-
-        localStorage.setItem('lang', langValue);
-
-        lang = langValue
-
-        if (lang === 'uz') {
-                document.title = `Uzum Market - internet do'kon`;
-        } else if (lang === 'ru') {
-                document.title = `Uzum Market - интернет магазин`;
-        }
-});
-
-renderProducts(products, elList);
-
+fetch( BASE_URL + '/products')
+        .then((res) => res.json())
+        .then((res) => {
+                products = res;
+                renderProducts(products, elList);
+                elLoader.style.cssText = 'display: none!important';
+        });
 
 
