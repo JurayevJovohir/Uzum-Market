@@ -7,6 +7,4 @@
             "savePath": "/css",
         }
     ],
-    "editor.tabSize": 4,
-    "editor.minimap.maxColumn": 120
 }
