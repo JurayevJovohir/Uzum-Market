@@ -10,6 +10,9 @@
 
 .ui-icon{
     position: absolute;
+    right: 6px;
+    top: 6px;
+    cursor: pointer;
 }
 
 .products-title {
@@ -21,8 +24,7 @@
 .products_inner {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px 0px;
+    gap: 25px 18px;
 }
 
 .card_list {
