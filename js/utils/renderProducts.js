@@ -1,8 +1,9 @@
-function renderProducts(array, parent, template) {
+import findElement  from "./findElement.js";
+
+function renderProducts(array, parent, template, isAdmin = false) {
     parent.textContent = null;
     array.forEach((product) => {
         const newProduct = template.content.cloneNode(true);
-
         const svg = findElement('#like', newProduct)
         const path = findElement('#path', newProduct)
         const productImg = findElement('img', newProduct)
@@ -11,17 +12,20 @@ function renderProducts(array, parent, template) {
         const productPrice = findElement('#products-price', newProduct)
         const productPrice2 = findElement('#products-price-2 ', newProduct)
 
-
         if (product.isFavorite) {
             path.style.fill = 'red';
         } else {
             path.style.fill = 'none';
         }
 
+        // admin.js
+        if (isAdmin) {
+            const deleteBtn = findElement('.delete-btn', newProduct);
+            deleteBtn.dataset.id = product.id;
+        }
         svg.dataset.id = product.id;
         path.dataset.id = product.id;
-
-       
+     
 
         productImg.src = product.image
         productTitle.textContent = product.name
@@ -33,3 +37,4 @@ function renderProducts(array, parent, template) {
     });
 }
 
+export default renderProducts;

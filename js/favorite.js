@@ -1,3 +1,6 @@
+import findElement from "./utils/findElement.js";
+import renderProducts from "./utils/renderProducts.js";
+
 const elFavorite = findElement('#top-favorite');
 const template = findElement('#template-products');
 const elLoader = findElement(".lds-spinner");
@@ -11,7 +14,7 @@ fetch('https://63ecdce432a0811723a39772.mockapi.io/products/')
     .then(data => {
 
         const results = data.filter((product) => {
-            if (product.isFavorite) {
+            if (    product.isFavorite) {
                 return product;
             }
             elLoader.style.cssText = 'display: none!important';

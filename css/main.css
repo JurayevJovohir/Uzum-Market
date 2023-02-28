@@ -243,14 +243,24 @@ a {
     opacity: 0;
   }
 }
+.form-section {
+  margin: 0 0 40px 0;
+}
+
 .card {
   position: relative;
   display: inline-block;
 }
 
-.products-img {
+.products-img-div {
+  width: 232px;
+  height: 310px;
   border-radius: 8px;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+.products-img-div:hover {
+  opacity: 0.8;
 }
 
 .ui-icon {
@@ -264,12 +274,13 @@ a {
   font-size: 28px;
   line-height: 36px;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .products_inner {
   display: flex;
   flex-wrap: wrap;
-  gap: 25px 18px;
+  gap: 25px 17px;
 }
 
 .card_list {
@@ -329,4 +340,10 @@ a {
 .item-div_prices svg:hover {
   background: #e1e1e1;
   transition: all 0.2s ease;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }/*# sourceMappingURL=main.css.map */

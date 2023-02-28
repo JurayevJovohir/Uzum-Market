@@ -1,3 +1,5 @@
+import findElement from "./findElement.js";
+
 const elLanguage = findElement('#select-language');
 
 let lang = localStorage.getItem('lang');

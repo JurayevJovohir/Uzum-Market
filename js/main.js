@@ -1,11 +1,23 @@
+import findElement from "./utils/findElement.js";
+import renderProducts from "./utils/renderProducts.js";
+import BASE_URL from "./utils/base_url.js";
+
 const elList = findElement('#top-products');
 const elTemplate = findElement('#template-products');
 
 const elLoader = findElement(".lds-spinner");
 
-let products = []
+let products = [];
+let categories = [];
 
-const BASE_URL = 'https://63ecdce432a0811723a39772.mockapi.io/';
+fetch(BASE_URL + 'catigories')
+        .then((res) => res.json())
+        .then((data) => {
+               data.forEach((category) => {
+                console.log(category.name);
+               })
+        });
+
 
 (async function getData() {
         const res = await fetch(BASE_URL + '/products');
@@ -15,7 +27,7 @@ const BASE_URL = 'https://63ecdce432a0811723a39772.mockapi.io/';
 
         renderProducts(products, elList, elTemplate);
         elLoader.style.cssText = 'display: none!important';
-})()  
+})()
 
 
 elList.addEventListener('click', (e) => {
@@ -26,25 +38,22 @@ elList.addEventListener('click', (e) => {
                 const id = Number(target.dataset.id);
 
                 products.forEach((product) => {
-                         if (+product.id === id) {
+                        if (+product.id === id) {
                                 product.isFavorite = !product.isFavorite;
 
-                                fetch(
-                                        `https://63ecdce432a0811723a39772.mockapi.io/products/${id}`,
-                                        {
-                                                method: 'put',
-                                                body: JSON.stringify({
-                                                        ...product,
-                                                        isFavorite: product.isFavorite,
-                                                }),
-                                                headers: {
-                                                        'Content-Type': 'application/json',
-                                                },
-                                        }
-                                )
+                                fetch(BASE_URL + `products/${id}`, {
+                                        method: 'put',
+                                        body: JSON.stringify({
+                                                ...product,
+                                                isFavorite: product.isFavorite,
+                                        }),
+                                        headers: {
+                                                'Content-Type': 'application/json',
+                                        },
+                                })
                                         .then((res) => res.json())
                                         .then((res) => {
- 
+
                                         });
 
                         }

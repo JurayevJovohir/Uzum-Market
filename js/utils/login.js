@@ -1,3 +1,5 @@
+import findElement from "./findElement.js";
+
 const elLogin = findElement('#login-btn')
 
 elLogin.addEventListener('click', () => {
