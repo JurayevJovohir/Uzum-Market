@@ -23,10 +23,10 @@ elForm.addEventListener('submit', (evt) => {
                 rating: elRating,
                 price: elPrice,
                 price2: elPrice2,
-                category: elCategory, 
+                category: elCategory,
         };
 
-        
+
         fetch(BASE_URL + '/products', {
                 method: 'post',
                 body: JSON.stringify(newProduct),
@@ -34,9 +34,9 @@ elForm.addEventListener('submit', (evt) => {
                         'Content-Type': 'application/json',
                 },
         }).then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-            })
+                .then((data) => {
+                        console.log(data);
+                })
 });
 
 let products = []
