@@ -6,6 +6,32 @@ const elList = findElement('#top-products');
 const elTemplate = findElement('#template-products');
 const elCategories = findElement('#categories');
 const elLoader = findElement(".lds-spinner");
+const elLogin = findElement('#login-btn');
+const elAdmin = findElement('#admin-link');
+
+
+let token = localStorage.getItem('token');
+
+if (token) {
+        elLogin.textContent = 'Выйти'; 
+        elAdmin.style.display = 'block';
+} else {
+        elLogin.textContent = 'Войти';
+        elAdmin.style.display = 'none';
+}
+
+
+elLogin.addEventListener('click', () => {
+        let token = localStorage.getItem('token');
+
+        if (token) {
+                localStorage.removeItem('token');
+                elLogin.textContent = 'Войти';
+                elAdmin.style.display = 'none';
+        } else {
+                window.location.href = '../login.html'
+        }              
+});
 
 let products = [];
 let categories = [];
@@ -84,6 +110,7 @@ elList.addEventListener('click', (e) => {
                                                 isFavorite: product.isFavorite,
                                         }),
                                         headers: {
+                                                Authorization: 'Bearer ' + token,
                                                 'Content-Type': 'application/json',
                                         },
                                 })

@@ -123,6 +123,10 @@ a {
   margin: 15px 0px 0px 0px;
 }
 
+.header-nav {
+  min-height: 25px;
+}
+
 .header_nav_list {
   display: flex;
   align-items: center;
@@ -144,6 +148,11 @@ a {
   color: #000000;
   opacity: 0.5;
   transition: all 0.4s ease;
+}
+
+#login-btn {
+  border: none;
+  background: transparent;
 }
 
 .swiper {

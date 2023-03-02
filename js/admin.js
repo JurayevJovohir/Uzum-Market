@@ -6,6 +6,12 @@ const elTemplate = findElement('#template-products');
 const elLoader = findElement(".lds-spinner");
 const elForm = findElement('.form-product');
 
+const token = localStorage.getItem('token');
+
+if (!token) {
+        window.location.href = '../index.html';
+}
+
 elForm.addEventListener('submit', (evt) => {
         evt.preventDefault();
 
@@ -31,6 +37,7 @@ elForm.addEventListener('submit', (evt) => {
                 method: 'post',
                 body: JSON.stringify(newProduct),
                 headers: {
+                        Authorization: 'Bearer ' + token,
                         'Content-Type': 'application/json',
                 },
         }).then((res) => res.json())
@@ -60,6 +67,10 @@ elList.addEventListener('click', (evt) => {
 
                 fetch(`https://63ecdce432a0811723a39772.mockapi.io/products/${id}`, {
                         method: 'delete',
+                        headers: {
+                                Authorization: 'Bearer ' + token,
+                                'Content-Type': 'application/json',
+                        },
                 })
                         .then((res) => res.json())
                         .then((res) => {
