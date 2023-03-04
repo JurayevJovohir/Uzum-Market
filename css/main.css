@@ -355,4 +355,8 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+.products-img-div-single {
+  display: inline-block;
 }/*# sourceMappingURL=main.css.map */

@@ -1,4 +1,4 @@
-import findElement  from "./findElement.js";
+import findElement from "./findElement.js";
 
 function renderProducts(array, parent, template, isAdmin = false) {
     parent.textContent = null;
@@ -6,7 +6,7 @@ function renderProducts(array, parent, template, isAdmin = false) {
         const newProduct = template.content.cloneNode(true);
         const svg = findElement('#like', newProduct)
         const path = findElement('#path', newProduct)
-        const productImg = findElement('img', newProduct)
+        const productImg = findElement('#products-img', newProduct)
         const productTitle = findElement('#products-title', newProduct)
         const productRating = findElement('#products-rating', newProduct)
         const productPrice = findElement('#products-price', newProduct)
@@ -25,13 +25,18 @@ function renderProducts(array, parent, template, isAdmin = false) {
         }
         svg.dataset.id = product.id;
         path.dataset.id = product.id;
-     
 
+        console.log(productImg.src)
         productImg.src = product.image
         productTitle.textContent = product.name
         productRating.textContent = product.rating
         productPrice.textContent = product.price
         productPrice2.textContent = product.price2
+
+        productImg.addEventListener("click", () => {
+            localStorage.setItem('id', product.id);
+            window.location.href = '../../single.html'
+        })
 
         parent.appendChild(newProduct)
     });

@@ -8,7 +8,21 @@ const elCategories = findElement('#categories');
 const elLoader = findElement(".lds-spinner");
 const elLogin = findElement('#login-btn');
 const elAdmin = findElement('#admin-link');
+const elSearch = findElement(".header_input");
 
+let products = [];
+let categories = [];
+
+elSearch.addEventListener("input", () => {
+        const value = elSearch.value.toLowerCase()
+
+        let inputResult = products.filter((product) => {
+                if (product.name.toLowerCase().includes(value)) {
+                        return product;
+                }
+        });     
+        renderProducts(inputResult, elList, elTemplate);
+});
 
 let token = localStorage.getItem('token');
 
@@ -19,7 +33,6 @@ if (token) {
         elLogin.textContent = 'Войти';
         elAdmin.style.display = 'none';
 }
-
 
 elLogin.addEventListener('click', () => {
         let token = localStorage.getItem('token');
@@ -33,8 +46,6 @@ elLogin.addEventListener('click', () => {
         }              
 });
 
-let products = [];
-let categories = [];
 
 fetch(BASE_URL + 'catigories')
         .then((res) => res.json())
@@ -123,3 +134,4 @@ elList.addEventListener('click', (e) => {
                 renderProducts(products, elList, elTemplate);
         }
 });
+

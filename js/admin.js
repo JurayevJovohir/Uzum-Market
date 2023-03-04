@@ -8,6 +8,8 @@ const elForm = findElement('.form-product');
 
 const token = localStorage.getItem('token');
 
+let products = [];
+
 if (!token) {
         window.location.href = '../index.html';
 }
@@ -22,10 +24,12 @@ elForm.addEventListener('submit', (evt) => {
         const elPrice2 = evt.target.price2.value
         const elCategory = evt.target.category.value
 
+        console.log(elTitle);
+
         const newProduct = {
                 createdAd: new Date(),
                 image: elImg,
-                title: elTitle,
+                name: elTitle,
                 rating: elRating,
                 price: elPrice,
                 price2: elPrice2,
@@ -46,7 +50,6 @@ elForm.addEventListener('submit', (evt) => {
                 })
 });
 
-let products = []
 
 const BASE_URL = 'https://63ecdce432a0811723a39772.mockapi.io/';
 
